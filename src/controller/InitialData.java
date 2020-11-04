@@ -1,4 +1,4 @@
-package sample;
+package controller;
 
 public class InitialData {
 
@@ -70,7 +70,9 @@ public class InitialData {
         return step;
     }
 
-
+    public void setStep(double step) {
+         this.step = step;
+    }
 
     public double getMaxValue(){
         return this.maxValue;

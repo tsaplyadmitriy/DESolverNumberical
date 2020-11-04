@@ -1,6 +1,5 @@
-package sample;
+package controller;
 
-import impl.jfxtras.styles.jmetro.ToggleSwitchSkin;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -12,7 +11,6 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.StringConverter;
-import org.controlsfx.control.ToggleSwitch;
 
 
 import java.net.URL;
@@ -23,7 +21,6 @@ import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import java.util.function.Function;
 
 public class Controller implements Initializable {
 
@@ -80,6 +77,18 @@ public class Controller implements Initializable {
     @FXML
     ToggleButton showLTEButton;
 
+    @FXML
+    Button investigateGTEButton;
+
+    @FXML
+    public TextField gteStart;
+
+    @FXML
+    public TextField gteEnd;
+
+    @FXML
+    public TextField gteIncrement;
+
     private MyGraph mathsGraph;
     private InitialData currentData;
 
@@ -94,24 +103,16 @@ public class Controller implements Initializable {
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-
         InitialData launchData = new InitialData(6.0, 1.0, 2.0, 0.01, 4000);
         currentData = launchData;
 
-
-
-        textX0.setText("" + launchData.getX0());
-        textY0.setText("" + launchData.getY0());
-        textUpperX.setText("" + launchData.getX());
-        textGridStep.setText("" + launchData.getStep());
-        textTimeLimit.setText("" + launchData.getTL());
+        setInitialDatatoGUI(currentData); //updates giui with launchData
 
         mathsGraph = new MyGraph(equationGraph);
 
-
-        setGraphGridSettings(launchData);
-        setGraphNumberFormat();
-        setListeners();
+        setGraphGridSettings(launchData); //sets up axis sizes
+        setGraphNumberFormat();//sets up axis number format
+        setListeners(); //sets up listeners for buttons and checkboxes
 
         drawGraphs(launchData);
 
@@ -127,7 +128,7 @@ public class Controller implements Initializable {
 
         exactSeries.setName("Exact Solution");
         mathsGraph.plotData(exactSeries);
-        exactSeries.getNode().setStyle("-fx-stroke:  #000000, white;");
+
 
     }
 
@@ -143,7 +144,7 @@ public class Controller implements Initializable {
         eulerSeries.setName("Euler");
         mathsGraph.plotData(eulerSeries);
 
-        eulerSeries.getNode().setStyle("-fx-stroke:  #FF0000, white;");
+
     }
 
     private void drawImprovedEuler(InitialData initialData) throws InterruptedException, ExecutionException, TimeoutException {
@@ -158,7 +159,7 @@ public class Controller implements Initializable {
 
 
         mathsGraph.plotData(impEulerSeries);
-        impEulerSeries.getNode().setStyle("-fx-stroke:  #00FF00, white;");
+
     }
 
     private void drawRungeKutta(InitialData initialData) throws InterruptedException, ExecutionException, TimeoutException {
@@ -170,7 +171,7 @@ public class Controller implements Initializable {
          rungeKuttaSeries.setName("Runge-Kutta");
 
         mathsGraph.plotData(rungeKuttaSeries);
-        rungeKuttaSeries.getNode().setStyle("-fx-stroke:  #0000FF white;");
+
     }
 
 
@@ -234,8 +235,65 @@ public class Controller implements Initializable {
         return currentData = new InitialData(textUpperX.getText(), textX0.getText(), textY0.getText(), textGridStep.getText(), textTimeLimit.getText());
     }
 
+    private void setInitialDatatoGUI(InitialData launchData){
+        textX0.setText("" + launchData.getX0());
+        textY0.setText("" + launchData.getY0());
+        textUpperX.setText("" + launchData.getX());
+        textGridStep.setText("" + launchData.getStep());
+        textTimeLimit.setText("" + launchData.getTL());
+        gteStart.setText(""+0.01);
+        gteEnd.setText(""+1);
+        gteIncrement.setText(""+0.001);
+        gteIncrement.setText(""+0.001);
+
+    }
+
 
     private void setListeners(){
+
+
+        investigateGTEButton.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            mathsGraph.clearData();;
+
+            try {
+
+
+                double startStep = Double.parseDouble(gteStart.getText());
+                double endStep = Double.parseDouble(gteEnd.getText());
+                double stepInc = Double.parseDouble(gteIncrement.getText());
+
+
+                XYChart.Series<Double, Double> gteEuler = NumericalMethods.gteEulerGraph(startStep,endStep,stepInc,currentData,(x->y(x,currentData)),y_prime).get();
+                XYChart.Series<Double, Double> gteImpEuler = NumericalMethods.gteImprovedEulerGraph(startStep,endStep,stepInc,currentData,(x->y(x,currentData)),y_prime).get();
+                XYChart.Series<Double, Double> gteRungeKutta = NumericalMethods.gteRungeKuttaGraph(startStep,endStep,stepInc,currentData,(x->y(x,currentData)),y_prime).get();
+                xAxis.setLowerBound(gteEuler.getData().get(0).getXValue());
+
+                xAxis.setUpperBound(gteEuler.getData().get(gteEuler.getData().size()-1).getXValue());
+                xAxis.setTickUnit(gteEuler.getData().get(0).getXValue()/10);
+
+
+                yAxis.setLowerBound(gteEuler.getData().get(0).getYValue());
+                yAxis.setUpperBound(gteEuler.getData().get(gteEuler.getData().size()-1).getYValue());
+                yAxis.setTickUnit(gteEuler.getData().get(gteEuler.getData().size()-1).getYValue()/50);
+
+                mathsGraph.plotData(gteEuler);
+                mathsGraph.plotData(gteImpEuler);
+                mathsGraph.plotData(gteRungeKutta);
+
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            catch (NumberFormatException ex) {
+                errorLabel.setText("Wrong format of input");
+
+            }
+            catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+
+        });
+
 
 
         redrawButton.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
@@ -253,12 +311,13 @@ public class Controller implements Initializable {
             }
 
             if (currentData != null) {
-                System.out.println("check");
+
                 if (currentData.getX() <= currentData.getX0()) {
                     errorLabel.setText("X cannot be less than X0");
                 } else {
 
                     isToggledToShowErrors = false;
+                    showLTEButton.setSelected(false);
                     setGraphGridSettings(currentData);
                     mathsGraph.clearData();
 

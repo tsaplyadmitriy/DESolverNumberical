@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<!--<?import org.controlsfx.control.ToggleSwitch?>-->
+
+<HBox maxHeight="900.0" maxWidth="1000.0" minHeight="600.0" minWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+   <children>
+      <ScrollPane prefHeight="651.0" prefWidth="664.0">
+        <content>
+          <AnchorPane fx:id="chartPane" minHeight="0.0" minWidth="0.0" prefHeight="595.0" prefWidth="660.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="619.0" prefWidth="645.0">
+                     <children>
+                        <HBox prefHeight="28.0" prefWidth="660.0">
+                           <children>
+                              <ToggleButton fx:id="showLTEButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="212.0" text="Show LTE Graph">
+                                 <HBox.margin>
+                                    <Insets left="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </ToggleButton>
+                              <Label alignment="CENTER" prefHeight="31.0" prefWidth="339.0" text="Solutions: Exact and Computational methods">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets top="5.0" />
+                                 </padding>
+                              </Label>
+                              <Button fx:id="investigateGTEButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="201.0" text="Investigate GTE">
+                                 <HBox.margin>
+                                    <Insets right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                         <LineChart fx:id="equationGraph" createSymbols="false" legendVisible="false" minHeight="585.0" prefHeight="585.0" prefWidth="585.0">
+                             <xAxis>
+                                 <NumberAxis autoRanging="false" lowerBound="-50" side="BOTTOM" tickUnit="1" upperBound="50" fx:id="xAxis" />
+                             </xAxis>
+                             <yAxis>
+                                 <NumberAxis fx:id="yAxis" autoRanging="false" lowerBound="-50" side="LEFT" tickUnit="1" upperBound="50" />
+                             </yAxis>
+                             <cursor>
+                                 <Cursor fx:constant="CROSSHAIR" />
+                             </cursor>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="15.0" right="5.0" />
+                           </VBox.margin>
+                         </LineChart>
+<!--                        <LineChart prefHeight="400.0" prefWidth="585.0">-->
+<!--                           <xAxis>-->
+<!--                              <CategoryAxis side="BOTTOM" />-->
+<!--                           </xAxis>-->
+<!--                           <yAxis>-->
+<!--                              <NumberAxis side="LEFT" />-->
+<!--                           </yAxis>-->
+<!--                        </LineChart>-->
+<!--                        <LineChart prefHeight="400.0" prefWidth="631.0">-->
+<!--                           <xAxis>-->
+<!--                              <CategoryAxis side="BOTTOM" />-->
+<!--                           </xAxis>-->
+<!--                           <yAxis>-->
+<!--                              <NumberAxis side="LEFT" />-->
+<!--                           </yAxis>-->
+<!--                        </LineChart>-->
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="271.0" style="-fx-background-color: #FFFFFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0);">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Soluitons Settings">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </Label>
+            <Label prefHeight="17.0" prefWidth="79.0" text="Enter x0:">
+               <VBox.margin>
+                  <Insets left="10.0" right="180.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="textX0" promptText="x0">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="10.0" right="5.0" />
+               </VBox.margin></TextField>
+            <Label prefHeight="17.0" prefWidth="83.0" text="Enter y0:">
+               <VBox.margin>
+                  <Insets left="10.0" right="180.0" top="5.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="textY0" promptText="y0">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="10.0" right="5.0" />
+               </VBox.margin></TextField>
+            <Label prefHeight="17.0" prefWidth="68.0" text="Enter X:">
+               <VBox.margin>
+                  <Insets left="10.0" right="200.0" top="5.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="textUpperX" promptText="X">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="10.0" right="5.0" />
+               </VBox.margin></TextField>
+            <Label prefHeight="17.0" prefWidth="114.0" text="Enter grid step:">
+               <VBox.margin>
+                  <Insets left="10.0" right="150.0" top="5.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="textGridStep" promptText="grid step">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="10.0" right="5.0" />
+               </VBox.margin>
+            </TextField>
+            <Label prefHeight="17.0" prefWidth="115.0" text="Enter time limit">
+               <VBox.margin>
+                  <Insets left="10.0" right="150.0" top="5.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="textTimeLimit" promptText="time limit">
+               <VBox.margin>
+                  <Insets left="10.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <CheckBox fx:id="exactCheck" mnemonicParsing="false" text="Exact">
+               <VBox.margin>
+                  <Insets bottom="5.0" right="150.0" top="20.0" />
+               </VBox.margin>
+            </CheckBox>
+            <CheckBox fx:id="eulerCheck" mnemonicParsing="false" text="Euler">
+               <VBox.margin>
+                  <Insets bottom="5.0" right="150.0" />
+               </VBox.margin>
+            </CheckBox>
+            <CheckBox fx:id="impEulerCheck" mnemonicParsing="false" text="Imp.Euler">
+               <VBox.margin>
+                  <Insets bottom="5.0" right="127.0" />
+               </VBox.margin>
+            </CheckBox>
+            <CheckBox fx:id="rungeKuttaCheck" mnemonicParsing="false" text="Runge-Kutta">
+               <VBox.margin>
+                  <Insets right="110.0" />
+               </VBox.margin>
+            </CheckBox>
+            <Label text="GTE Step Start">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="gteStart">
+               <VBox.margin>
+                  <Insets left="50.0" right="50.0" />
+               </VBox.margin>
+            </TextField>
+            <Label text="GTE Step End">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="gteEnd">
+               <VBox.margin>
+                  <Insets left="50.0" right="50.0" />
+               </VBox.margin>
+            </TextField>
+            <Label text="GTE Step Increment">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="gteIncrement">
+               <VBox.margin>
+                  <Insets left="50.0" right="50.0" />
+               </VBox.margin>
+            </TextField>
+            <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="232.0" style="-fx-text-fill: #FF0000;">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="redrawButton" mnemonicParsing="false" prefHeight="34.0" prefWidth="238.0" style="-fx-background-color: #3232D6; -fx-text-fill: #FFFFFF;" text="Draw">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin></Button>
+         </children>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin></VBox>
+   </children>
+</HBox>

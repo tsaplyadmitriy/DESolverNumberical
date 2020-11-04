@@ -1,5 +1,5 @@
 
-package sample;
+package controller;
 @FunctionalInterface
 
 interface ComplexFunction<FirstArg ,SecondArg> {

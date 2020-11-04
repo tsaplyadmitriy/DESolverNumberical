@@ -17,7 +17,7 @@
 
 <!--<?import org.controlsfx.control.ToggleSwitch?>-->
 
-<HBox maxHeight="900.0" maxWidth="1000.0" minHeight="600.0" minWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<HBox maxHeight="900.0" maxWidth="1000.0" minHeight="600.0" minWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
    <children>
       <ScrollPane prefHeight="651.0" prefWidth="664.0">
         <content>
@@ -93,25 +93,25 @@
                   <Insets left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </Label>
-            <Label text="Enter x0:">
+            <Label prefHeight="17.0" prefWidth="79.0" text="Enter x0:">
                <VBox.margin>
-                  <Insets left="10.0" right="200.0" top="10.0" />
+                  <Insets left="10.0" right="180.0" top="10.0" />
                </VBox.margin>
             </Label>
             <TextField fx:id="textX0" promptText="x0">
                <VBox.margin>
                   <Insets bottom="5.0" left="10.0" right="5.0" />
                </VBox.margin></TextField>
-            <Label text="Enter y0:">
+            <Label prefHeight="17.0" prefWidth="83.0" text="Enter y0:">
                <VBox.margin>
-                  <Insets left="10.0" right="200.0" top="5.0" />
+                  <Insets left="10.0" right="180.0" top="5.0" />
                </VBox.margin>
             </Label>
             <TextField fx:id="textY0" promptText="y0">
                <VBox.margin>
                   <Insets bottom="5.0" left="10.0" right="5.0" />
                </VBox.margin></TextField>
-            <Label text="Enter X:">
+            <Label prefHeight="17.0" prefWidth="68.0" text="Enter X:">
                <VBox.margin>
                   <Insets left="10.0" right="200.0" top="5.0" />
                </VBox.margin>
@@ -120,7 +120,7 @@
                <VBox.margin>
                   <Insets bottom="5.0" left="10.0" right="5.0" />
                </VBox.margin></TextField>
-            <Label prefHeight="17.0" prefWidth="93.0" text="Enter grid step:">
+            <Label prefHeight="17.0" prefWidth="114.0" text="Enter grid step:">
                <VBox.margin>
                   <Insets left="10.0" right="150.0" top="5.0" />
                </VBox.margin>
@@ -130,7 +130,7 @@
                   <Insets bottom="5.0" left="10.0" right="5.0" />
                </VBox.margin>
             </TextField>
-            <Label prefHeight="17.0" prefWidth="93.0" text="Enter time limit">
+            <Label prefHeight="17.0" prefWidth="115.0" text="Enter time limit">
                <VBox.margin>
                   <Insets left="10.0" right="150.0" top="5.0" />
                </VBox.margin>
@@ -160,9 +160,39 @@
                   <Insets right="110.0" />
                </VBox.margin>
             </CheckBox>
+            <Label text="GTE Step Start">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="gteStart">
+               <VBox.margin>
+                  <Insets left="50.0" right="50.0" />
+               </VBox.margin>
+            </TextField>
+            <Label text="GTE Step End">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="gteEnd">
+               <VBox.margin>
+                  <Insets left="50.0" right="50.0" />
+               </VBox.margin>
+            </TextField>
+            <Label text="GTE Step Increment">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="gteIncrement">
+               <VBox.margin>
+                  <Insets left="50.0" right="50.0" />
+               </VBox.margin>
+            </TextField>
             <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="232.0" style="-fx-text-fill: #FF0000;">
                <VBox.margin>
-                  <Insets top="170.0" />
+                  <Insets top="20.0" />
                </VBox.margin>
                <font>
                   <Font size="14.0" />
