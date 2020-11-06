@@ -84,7 +84,7 @@ public class NumericalMethods {
             lteImpNumbericalEuler.getData().clear();;
             lteImpNumbericalEuler.setName("Imp.Euler");
             gteImpNumEuler = -1;
-            while (x0 <= initialData.getX()+h) {
+            while (x0 <= initialData.getX()) {
 
                 double y_applied = y.applyAsDouble(x0);
                 double yh_applied = y.applyAsDouble(x0 + h);
@@ -140,14 +140,19 @@ public class NumericalMethods {
         });
     }
 
-    public static Future<XYChart.Series<Double, Double>> gteEulerGraph(double startStep, double endStep,double ds, InitialData initialData, DoubleUnaryOperator y, ComplexFunction<Double, Double> y_prime){
+    public static Future<XYChart.Series<Double, Double>> gteEulerGraph(int startStep, int endStep, InitialData initialData, DoubleUnaryOperator y, ComplexFunction<Double, Double> y_prime){
 
-        XYChart.Series<Double, Double> eulseries = new XYChart.Series<Double, Double>();
+
         return executor.submit(() -> {
 
-            for(double d = startStep;d<endStep;d = d +ds){
+            XYChart.Series<Double, Double> eulseries = new XYChart.Series<Double, Double>();
+            for(int n = startStep;n<=endStep;n++) {
+
+
+                double d = (initialData.getX() - initialData.getX0()) / n;
+
                 initialData.setStep(d);
-                System.out.print(" /"+d);
+                System.out.print(" /" + d);
                 double y0 = initialData.getY0();
                 double x0 = initialData.getX0();
                 double h = initialData.getStep();
@@ -156,19 +161,22 @@ public class NumericalMethods {
                 lteNumbericalEuler.getData().clear();
                 lteNumbericalEuler.setName("Euler");
                 gteNumEuler = -1;
-                while(x0<=initialData.getX()+h) {
+                double gtePochti = -1;
+                while (x0 < initialData.getX()) {
+
+                    if (Math.abs(y.applyAsDouble(x0) - y0) > gteNumEuler) {
+                        gteNumEuler = Math.abs(y.applyAsDouble(x0) - y0);
+                    }
+
 
                     y0 = y0 + h * y_prime.apply(x0, y0);
                     x0 = x0 + h;
 
-                    if(Math.abs(y.applyAsDouble(x0)) - y0 >gteNumEuler){
-                        gteNumEuler = y.applyAsDouble(x0) - y0;
-                    }
-
 
                 }
 
-                eulseries.getData().add(new XYChart.Data<Double, Double>(d,gteNumEuler));
+                eulseries.getData().add(new XYChart.Data<Double, Double>((double) n, gteNumEuler));
+
             }
             System.out.println(eulseries.getData());
             eulseries.setName("Euler");
@@ -177,44 +185,48 @@ public class NumericalMethods {
         });
     }
 
-    public static Future<XYChart.Series<Double, Double>> gteImprovedEulerGraph(double startStep, double endStep,double ds,InitialData initialData, DoubleUnaryOperator y, ComplexFunction<Double, Double> y_prime){
+    public static Future<XYChart.Series<Double, Double>> gteImprovedEulerGraph(int startStep, int endStep,InitialData initialData, DoubleUnaryOperator y, ComplexFunction<Double, Double> y_prime){
         XYChart.Series<Double, Double> impseries = new XYChart.Series<Double, Double>();
         return executor.submit(() -> {
 
-            for(double d = startStep;d<endStep;d = d +ds){
-                initialData.setStep(d);
+            for(int n = startStep;n<=endStep;n++){
+
                 double y0 = initialData.getY0();
                 double x0 = initialData.getX0();
-                double h = initialData.getStep();
-
+                double h =(initialData.getX() - initialData.getX0())/(double)n;
+                System.out.println("-"+h);
 
                 lteImpNumbericalEuler.getData().clear();;
                 lteImpNumbericalEuler.setName("Imp.Euler");
                 gteImpNumEuler = -1;
-                while (x0 <= initialData.getX()+h) {
+                while (x0 <= initialData.getX()) {
 
 
-
+                    if(Math.abs(y.applyAsDouble(x0) - y0) >gteImpNumEuler){
+                        gteImpNumEuler = Math.abs(y.applyAsDouble(x0) - y0);
+                    }
                     y0 = y0 + 0.5 * h * (y_prime.apply(x0, y0) + y_prime.apply(x0 + h, y0+ h*y_prime.apply(x0,y0)  ));
                     x0 = x0 + h;
-                    if(y.applyAsDouble(x0) - y0 >gteImpNumEuler){
-                        gteImpNumEuler = y.applyAsDouble(x0) - y0;
-                    }
+
 
 
                 }
-                impseries.getData().add(new XYChart.Data<Double, Double>(d,gteImpNumEuler));
+                impseries.getData().add(new XYChart.Data<Double, Double>((double)n,gteImpNumEuler));
             }
-            System.out.println(impseries.getData());
+            System.out.println("/"+impseries.getData());
             impseries.setName("Imp.Euler");
             return impseries;
         });
     }
 
-    public static Future<XYChart.Series<Double, Double>> gteRungeKuttaGraph(double startStep, double endStep,double ds,InitialData initialData, DoubleUnaryOperator y, ComplexFunction<Double, Double> y_prime){
+    public static Future<XYChart.Series<Double, Double>> gteRungeKuttaGraph(int  startStep, int endStep,InitialData initialData, DoubleUnaryOperator y, ComplexFunction<Double, Double> y_prime){
         XYChart.Series<Double, Double> rkseries = new XYChart.Series<Double, Double>();
         return executor.submit(() -> {
-            for(double d = startStep;d<endStep;d = d +ds){
+
+
+            for(double n = startStep;n<=endStep;n++){
+
+                double d = (initialData.getX() - initialData.getX0())/n;
                 initialData.setStep(d);
                 double y0 = initialData.getY0();
                 double x0 = initialData.getX0();
@@ -225,7 +237,7 @@ public class NumericalMethods {
                 lteRungeKutta.getData().clear();
                 lteRungeKutta.setName("Runge-Kutta");
                 gteRungeKutta = -1;
-                while(x0<=initialData.getX()+h){
+                while(x0<=initialData.getX()){
 
 
 
@@ -234,22 +246,30 @@ public class NumericalMethods {
                     double k3 = h*y_prime.apply(x0 + 0.5*h, y0 + 0.5*k2);
                     double k4 = h*y_prime.apply(x0 + h, y0 + k3);
 
+                    if(Math.abs(y.applyAsDouble(x0) - y0) >gteRungeKutta){
+                        gteRungeKutta = Math.abs(y.applyAsDouble(x0) - y0);
+                    }
+
                     y0 = y0 + (1.0/6.0)*(k1 + 2*k2 + 2*k3 + k4);;
 
                     x0 = x0+h;
 
 
-                    if(y.applyAsDouble(x0) - y0 >gteRungeKutta){
-                        gteRungeKutta = y.applyAsDouble(x0) - y0;
-                    }
+
 
                 }
-                rkseries.getData().add(new XYChart.Data<Double, Double>(d,gteRungeKutta));
+                rkseries.getData().add(new XYChart.Data<Double, Double>(n,gteRungeKutta));
             }
             System.out.println(rkseries.getData());
             rkseries.setName("Runge-Kutta");
             return rkseries;
         });
+    }
+
+
+    public double y(double x,InitialData initialData){
+
+        return Math.sqrt(Math.pow(((2*x+1)/6+initialData.getC()*Math.exp(2*x)),3));
     }
 
 }

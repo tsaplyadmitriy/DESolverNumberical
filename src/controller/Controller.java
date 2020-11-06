@@ -86,8 +86,7 @@ public class Controller implements Initializable {
     @FXML
     public TextField gteEnd;
 
-    @FXML
-    public TextField gteIncrement;
+
 
     private MyGraph mathsGraph;
     private InitialData currentData;
@@ -241,10 +240,9 @@ public class Controller implements Initializable {
         textUpperX.setText("" + launchData.getX());
         textGridStep.setText("" + launchData.getStep());
         textTimeLimit.setText("" + launchData.getTL());
-        gteStart.setText(""+0.01);
-        gteEnd.setText(""+1);
-        gteIncrement.setText(""+0.001);
-        gteIncrement.setText(""+0.001);
+        gteStart.setText(""+10);
+        gteEnd.setText(""+100);
+
 
     }
 
@@ -258,23 +256,23 @@ public class Controller implements Initializable {
             try {
 
 
-                double startStep = Double.parseDouble(gteStart.getText());
-                double endStep = Double.parseDouble(gteEnd.getText());
-                double stepInc = Double.parseDouble(gteIncrement.getText());
+                int startStep = Integer.parseInt(gteStart.getText());
+                int endStep = Integer.parseInt(gteEnd.getText());
 
 
-                XYChart.Series<Double, Double> gteEuler = NumericalMethods.gteEulerGraph(startStep,endStep,stepInc,currentData,(x->y(x,currentData)),y_prime).get();
-                XYChart.Series<Double, Double> gteImpEuler = NumericalMethods.gteImprovedEulerGraph(startStep,endStep,stepInc,currentData,(x->y(x,currentData)),y_prime).get();
-                XYChart.Series<Double, Double> gteRungeKutta = NumericalMethods.gteRungeKuttaGraph(startStep,endStep,stepInc,currentData,(x->y(x,currentData)),y_prime).get();
+
+                XYChart.Series<Double, Double> gteEuler = NumericalMethods.gteEulerGraph(startStep,endStep,currentData,(x->y(x,currentData)),y_prime).get();
+                XYChart.Series<Double, Double> gteImpEuler = NumericalMethods.gteImprovedEulerGraph(startStep,endStep,currentData,(x->y(x,currentData)),y_prime).get();
+                XYChart.Series<Double, Double> gteRungeKutta = NumericalMethods.gteRungeKuttaGraph(startStep,endStep,currentData,(x->y(x,currentData)),y_prime).get();
                 xAxis.setLowerBound(gteEuler.getData().get(0).getXValue());
 
                 xAxis.setUpperBound(gteEuler.getData().get(gteEuler.getData().size()-1).getXValue());
-                xAxis.setTickUnit(gteEuler.getData().get(0).getXValue()/10);
+                xAxis.setTickUnit((endStep-startStep));
 
 
-                yAxis.setLowerBound(gteEuler.getData().get(0).getYValue());
-                yAxis.setUpperBound(gteEuler.getData().get(gteEuler.getData().size()-1).getYValue());
-                yAxis.setTickUnit(gteEuler.getData().get(gteEuler.getData().size()-1).getYValue()/50);
+                yAxis.setLowerBound(0);
+                yAxis.setUpperBound(gteEuler.getData().get(gteEuler.getData().size()-1).getYValue()*3);
+                //yAxis.setTickUnit(gteEuler.getData().get(gteEuler.getData().size()-1).getYValue()/50);
 
                 mathsGraph.plotData(gteEuler);
                 mathsGraph.plotData(gteImpEuler);

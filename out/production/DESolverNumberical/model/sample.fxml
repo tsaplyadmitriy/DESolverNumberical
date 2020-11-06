@@ -160,7 +160,7 @@
                   <Insets right="110.0" />
                </VBox.margin>
             </CheckBox>
-            <Label text="GTE Step Start">
+            <Label text="N min">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
@@ -170,22 +170,12 @@
                   <Insets left="50.0" right="50.0" />
                </VBox.margin>
             </TextField>
-            <Label text="GTE Step End">
+            <Label text="N max">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </Label>
             <TextField fx:id="gteEnd">
-               <VBox.margin>
-                  <Insets left="50.0" right="50.0" />
-               </VBox.margin>
-            </TextField>
-            <Label text="GTE Step Increment">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </Label>
-            <TextField fx:id="gteIncrement">
                <VBox.margin>
                   <Insets left="50.0" right="50.0" />
                </VBox.margin>

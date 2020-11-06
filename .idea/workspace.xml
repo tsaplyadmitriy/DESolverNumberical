@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ae280e52-5cbb-46ea-8c80-6be7646cdfeb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DESolverNumberical.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DESolverNumberical.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/ComplexFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ComplexFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/InitialData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/InitialData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/MyGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MyGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/NumericalMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/NumericalMethods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sample.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/MyGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MyGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/NumericalMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/NumericalMethods.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/sample.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,8 +61,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Dmitriy\Desktop\DEAssignment\DESolverNumberical\src\view" />
       <recent name="C:\Users\Dmitriy\Desktop\DEAssignment\DESolverNumberical\src\model" />
+      <recent name="C:\Users\Dmitriy\Desktop\DEAssignment\DESolverNumberical\src\view" />
     </key>
   </component>
   <component name="RunManager">
@@ -100,7 +96,8 @@
       <option name="presentableId" value="Default" />
       <updated>1604336772849</updated>
       <workItem from="1604336776929" duration="3310000" />
-      <workItem from="1604408803838" duration="8577000" />
+      <workItem from="1604408803838" duration="10598000" />
+      <workItem from="1604648405859" duration="5088000" />
     </task>
     <servers />
   </component>
@@ -112,25 +109,29 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="421" y="95" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1604482773700" />
-    <state width="1237" height="2" key="GridCell.Tab.0.bottom" timestamp="1604491035363">
+    <state width="1237" height="142" key="GridCell.Tab.0.bottom" timestamp="1604653653632">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="2" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1604491035363" />
-    <state width="1237" height="2" key="GridCell.Tab.0.center" timestamp="1604491035363">
+    <state width="1237" height="142" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1604653653632" />
+    <state width="1237" height="142" key="GridCell.Tab.0.center" timestamp="1604653653632">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="2" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1604491035363" />
-    <state width="1237" height="2" key="GridCell.Tab.0.left" timestamp="1604491035363">
+    <state width="1237" height="142" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1604653653632" />
+    <state width="1237" height="142" key="GridCell.Tab.0.left" timestamp="1604653653632">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="2" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1604491035363" />
-    <state width="1237" height="2" key="GridCell.Tab.0.right" timestamp="1604491035363">
+    <state width="1237" height="142" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1604653653632" />
+    <state width="1237" height="142" key="GridCell.Tab.0.right" timestamp="1604653653632">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="2" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1604491035363" />
+    <state width="1237" height="142" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1604653653632" />
     <state x="121" y="0" key="SettingsEditor" timestamp="1604347173717">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="121" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1604347173717" />
+    <state x="337" y="165" key="com.intellij.ide.util.TipDialog" timestamp="1604648404775">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="337" y="165" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1604648404775" />
   </component>
 </project>

@@ -26,6 +26,7 @@ public class MyGraph {
 
     }
 
+
     public void clearData(){
         graph.getData().clear();
     }
